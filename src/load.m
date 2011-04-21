@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd at 4/21/2011.
+*/
+
 #include <config.h>
 #include <stdio.h>
 #include <objc/objc-api.h>
@@ -33,7 +37,7 @@
 #  include <dlfcn.h>
 #elif defined(LOADHP)
 #  include <dl.h>
-#elif defined(__WIN32__)
+#elif defined(__WIN32__) || defined(WIN32) || defined(__CYGWIN32__
 #  include <windows.h>
 #endif
 
