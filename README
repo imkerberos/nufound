@@ -1,63 +1,22 @@
-
-This is NuFound, a revision of the libFoundation library for use with Nu.
-
+This is a fork of the NuFound project, a revision of the libFoundation library.
 
 ABOUT
 
-Forked mainly for expedience, NuFound contains a few bug fixes and 
-enhancements that make NuFound look more like the Apple Foundation classes.
-But there are many missing features, so in the future, one or more of
-the following may happen, in no particular order of preference:
-
-1. the GNUstep base library will be updated for use with Nu instead of NuFound.
-
-2. the Cocotron project will be updated so that it can be built and used
-with the "stock" GCC and libobjc on Linux.
-
-3. NuFound will remerge into a revived libFoundation project.
-
-4. a mature corporate Foundation library will be released under an acceptable
-open source license.
-
-5. NuFound will continue to be enhanced until it satisfies all requirements.
-
-But in its current state, NuFound supports a fully-functional build of Nu.
-
+This was forked from the original NuFound with the purpose of (1) reviving a dormant project and (2) then getting it up-to-date with the current state of FoundationKit.
 
 LICENSE
 
 NuFound is released under the Apache Public License, v. 2.0.
 libFoundation is available under a more liberal original license.
 
-
 INSTALLATION
 
-./configure
-make
-sudo make install
-sudo cp -r Foundation /usr/local/include
-
-(Sorry about that last step; if someone would help me get it into the autotools 
-Makefiles I would greatly appreciate it!)
-
+make -f Makefile.cygwin
+You may then wish to copy the headers from ./Foundation.
 
 ACKNOWLEDGEMENTS
 
+The original contributors to NuFound are jsyedidia, Markus Hardt, and timburks. They have done a significant job of getting the original libFoundation up-to-date.
+
 Many (many many!) thanks to  Mircea Oancea, Ovidiu Predescu, and Helge Hess
 for sharing their work on libFoundation.
-	
-	
-APPENDIX: Autoconf/Automake notes
-
-To regenerate the build files with autoconf/automake,
-run the following command:
-
-% autoreconf --install
-
-The two primary source files are 
-	configure.ac
-	Makefile.am
-
-To clean up, use:
-
-% make distclean
