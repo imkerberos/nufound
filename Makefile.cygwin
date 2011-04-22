@@ -41,7 +41,19 @@ SOURCES = \
 CFLAGS = -g -I. -IFoundation
 OBJCFLAGS = -fconstant-string-class=NSConstantString -lobjc
 LDFLAGS = -shared
+# edit this for each platform!
 PLATFORMFLAGS = -lcygwin
+PLATFORMLIBNAME = nufound.dll
 
-all: 
-	gcc $(CFLAGS) $(LDFLAGS) $(SOURCES) $(OBJCFLAGS) $(PLATFORMFLAGS)
+# note - all build output should go to the /build folder.
+
+all: lib
+
+lib:
+	mkdir -p build
+	gcc $(CFLAGS) $(LDFLAGS) $(SOURCES) $(OBJCFLAGS) $(PLATFORMFLAGS) -o build/libnufound.o
+	gcc -shared build/libnufound.o -o $(join build/, $(PLATFORMLIBNAME))
+
+clean:
+	cd build; rm *.o
+
