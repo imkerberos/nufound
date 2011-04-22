@@ -37,7 +37,7 @@
 #  include <dlfcn.h>
 #elif defined(LOADHP)
 #  include <dl.h>
-#elif defined(__WIN32__) || defined(WIN32) || defined(__CYGWIN32__
+#elif defined(__WIN32__) || defined(WIN32) || defined(__CYGWIN32__)
 #  include <windows.h>
 #endif
 
