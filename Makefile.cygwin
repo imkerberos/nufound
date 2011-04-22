@@ -54,6 +54,9 @@ lib:
 	$(foreach file, $(SOURCES), gcc $(CFLAGS) $(file) $(OBJCFLAGS) $(PLATFORMFLAGS) -c -o build/$(notdir $(file)).o;)
 	gcc $(foreach file, $(SOURCES), build/$(notdir $(file)).o) $(LDFLAGS) $(OBJCFLAGS) -o build/$(PLATFORMLIBNAME)
 
+test: lib
+	gcc $(CFLAGS) -Lbuild tests/CuTest.c tests/test-driver.m -lnufound $(OBJCFLAGS) -o build/tests
+	cd build; ./tests
 
 clean:
 	cd build; rm *.o
