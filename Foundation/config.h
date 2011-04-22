@@ -1,4 +1,4 @@
-/* config.h.  Generated automatically by configure.  */
+/* config.h.  Generated automatically by configure, although since I'm phasing the inpenetrable autoconf-based system out, feel free to edit this. */
 #ifndef __config_h__
 #define __config_h__
 
@@ -42,7 +42,7 @@
 
 /* Define this if you have the sigsetmask function, eg the BSD signal
    handling. */
-#define HAVE_SIGSETMASK 1
+//#define HAVE_SIGSETMASK 1
 
 /* Define this if you have the sighold function, eg the System V signal
    handling. */
@@ -52,13 +52,13 @@
 #define HAVE_SIGSET 1
 
 /* Define if you have the sigaction function. */
-#define HAVE_SIGACTION 1
+//#define HAVE_SIGACTION 1
 
 /* Define if you have the gethostbyname_r function. */
-#define HAVE_GETHOSTBYNAME_R 1
+//#define HAVE_GETHOSTBYNAME_R 1
 
 /* Define if you have the gethostbyaddr_r function. */
-#define HAVE_GETHOSTBYADDR_R 1
+//#define HAVE_GETHOSTBYADDR_R 1
 
 /* Define if you have the gethostent_r function. */
 #define HAVE_GETHOSTENT_R 1
