@@ -50,6 +50,19 @@
 typedef double NSTimeInterval;
 #endif
 
+#if __LP64__ || _LP64 || NS_BUILD_32_LIKE_64
+typedef long NSInteger;
+#else
+typedef int NSInteger;
+#endif
+
+#if __LP64__ || _LP64 ||  NS_BUILD_32_LIKE_64
+typedef unsigned long NSUInteger;
+#else
+typedef unsigned int NSUInteger;
+#endif
+
+
 @class Protocol;
 @class NSZone;
 @class NSString;
