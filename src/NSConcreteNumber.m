@@ -2,6 +2,10 @@
  * Author: mircea
  */
 
+/*
+   First edited by rplacd 4/23/11.
+*/
+
 #include <Foundation/common.h>
 #include <Foundation/NSString.h>
 #include <Foundation/NSException.h>
@@ -106,6 +110,16 @@ static char buf[256]; // THREAD
 }
 
 - (double)doubleValue
+{
+    return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
 {
     return data;
 }
@@ -264,6 +278,16 @@ static char buf[256]; // THREAD
 }
 
 - (double)doubleValue
+{
+    return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
 {
     return data;
 }
@@ -427,6 +451,16 @@ static char buf[256]; // THREAD
     return data;
 }
 
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+    return data;
+}
+
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
 {
     CHK_STATIC_USTR;
@@ -582,6 +616,16 @@ static char buf[256]; // THREAD
 }
 
 - (double)doubleValue
+{
+    return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
 {
     return data;
 }
@@ -745,6 +789,17 @@ static char buf[256]; // THREAD
     return data;
 }
 
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+    return data;
+}
+
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
 {
     CHK_STATIC_USTR;
@@ -900,6 +955,16 @@ static char buf[256]; // THREAD
 }
 
 - (double)doubleValue
+{
+    return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
 {
     return data;
 }
@@ -1063,6 +1128,16 @@ static char buf[256]; // THREAD
     return data;
 }
 
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+  return data;
+}
+
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
 {
     CHK_STATIC_STR;
@@ -1220,6 +1295,16 @@ static char buf[256]; // THREAD
 - (double)doubleValue
 {
     return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+  return data;
 }
 
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
@@ -1381,6 +1466,16 @@ static char buf[256]; // THREAD
     return data;
 }
 
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+  return data;
+}
+
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
 {
     CHK_STATIC_STR;
@@ -1504,17 +1599,6 @@ static char buf[256]; // THREAD
 {
     return data;
 }
-
-- (unsigned int)unsignedIntValue
-{
-    return data;
-}
-
-- (long)longValue
-{
-    return data;
-}
-
 - (unsigned long)unsignedLongValue
 {
     return data;
@@ -1538,6 +1622,26 @@ static char buf[256]; // THREAD
 - (double)doubleValue
 {
     return data;
+}
+
+- (unsigned int)unsignedIntValue
+{
+    return data;
+}
+
+- (long)longValue
+{
+    return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+  return data;
 }
 
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
@@ -1699,6 +1803,16 @@ static char buf[256]; // THREAD
     return data;
 }
 
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+  return data;
+}
+
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
 {
     CHK_STATIC_STR;
@@ -1856,6 +1970,16 @@ static char buf[256]; // THREAD
 - (double)doubleValue
 {
     return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+  return data;
 }
 
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
@@ -2016,6 +2140,16 @@ static char buf[256]; // THREAD
     return data;
 }
 
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)usignedIntegerValue
+{
+    return data;
+}
+
 - (NSString *)descriptionWithLocale:(NSDictionary *)locale
 {
     FMT_NUMSTR("%0.16g");
@@ -2094,3 +2228,344 @@ static char buf[256]; // THREAD
 
 @end /* NSDoubleNumber */
 
+@implementation NSIntegerNumber
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    return NSAllocateObject (self, 0, zone);
+}
+
+- initValue:(const void*)value withObjCType:(const char*)type;
+{
+    self = [super init];
+    data = *(NSInteger*)value;
+    return self;
+}
+
+- (BOOL)boolValue
+{
+    return data;
+}
+
+- (signed char)charValue
+{
+    return data;
+}
+
+- (unsigned char)unsignedCharValue
+{
+    return data;
+}
+
+- (short)shortValue
+{
+    return data;
+}
+
+- (unsigned short)unsignedShortValue
+{
+    return data;
+}
+
+- (int)intValue
+{
+    return data;
+}
+
+- (unsigned int)unsignedIntValue
+{
+    return data;
+}
+
+- (long)longValue
+{
+    return data;
+}
+
+- (unsigned long)unsignedLongValue
+{
+    return data;
+}
+
+- (long long)longLongValue
+{
+    return data;
+}
+
+- (unsigned long long)unsignedLongLongValue
+{
+    return data;
+}
+
+- (float)floatValue
+{
+    return data;
+}
+
+- (double)doubleValue
+{
+    return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+    return data;
+}
+
+- (NSString *)descriptionWithLocale:(NSDictionary *)locale
+{
+    FMT_NUMSTR("%l");
+}
+
+- (int)generality
+{
+#if __LP64__ || _LP64 || NS_BUILD_32_LIKE_64
+    return [[NSNumber numberWithLong:0] generality];
+#else
+    return [[NSNumber numberWithInt:0] generality];
+#endif
+}
+
+- (NSComparisonResult)compare:(NSNumber *)otherNumber
+{
+    if ([self generality] >= [otherNumber generality]) {
+	NSInteger other_data = [otherNumber integerValue];
+
+	if (data == other_data)
+	    return NSOrderedSame;
+	else
+	    return (data < other_data) ?
+		      NSOrderedAscending
+		    : NSOrderedDescending;
+    }
+    else
+	return -[otherNumber compare:self];
+}
+
+// Override these from NSValue
+
+- (void)getValue:(void*)value
+{
+    if (value == nil) {
+	[[[InvalidArgumentException new]
+		setReason:@"NULL buffer in -getValue"] raise];
+    }
+    else 
+	*(NSInteger*)value = data;
+}
+- (void *)valueBytes
+{
+    return &(self->data);
+}
+
+- (const char*)objCType
+{
+    return @encode(NSInteger);
+}
+
+// NSCopying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    if ([self zone] == zone)
+	return RETAIN(self);
+    else
+	return [[[NSIntegerNumber class] alloc]
+		    initValue:&data withObjCType:@encode(NSInteger)];
+}
+
+// NSCoding
+
+- (Class)classForCoder
+{
+    return isa;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+    [coder encodeValueOfObjCType:@encode(NSInteger) at:&data];
+}
+
+- (id)initWithCoder:(NSCoder*)coder
+{
+    [coder decodeValueOfObjCType:@encode(NSInteger) at:&data];
+    return self;
+}
+
+@end /* NSIntegerNumber */
+
+@implementation NSUIntegerNumber
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    return NSAllocateObject (self, 0, zone);
+}
+
+- initValue:(const void*)value withObjCType:(const char*)type;
+{
+    self = [super init];
+    data = *(NSUInteger*)value;
+    return self;
+}
+
+- (BOOL)boolValue
+{
+    return data;
+}
+
+- (signed char)charValue
+{
+    return data;
+}
+
+- (unsigned char)unsignedCharValue
+{
+    return data;
+}
+
+- (short)shortValue
+{
+    return data;
+}
+
+- (unsigned short)unsignedShortValue
+{
+    return data;
+}
+
+- (int)intValue
+{
+    return data;
+}
+
+- (unsigned int)unsignedIntValue
+{
+    return data;
+}
+
+- (long)longValue
+{
+    return data;
+}
+
+- (unsigned long)unsignedLongValue
+{
+    return data;
+}
+
+- (long long)longLongValue
+{
+    return data;
+}
+
+- (unsigned long long)unsignedLongLongValue
+{
+    return data;
+}
+
+- (float)floatValue
+{
+    return data;
+}
+
+- (double)doubleValue
+{
+    return data;
+}
+
+- (NSInteger)integerValue
+{
+    return data;
+}
+
+- (NSUInteger)unsignedIntegerValue
+{
+    return data;
+}
+
+- (NSString *)descriptionWithLocale:(NSDictionary *)locale
+{
+    FMT_NUMSTR("%ul");
+}
+
+- (int)generality
+{
+#if __LP64__ || _LP64 || NS_BUILD_32_LIKE_64
+    return [[NSNumber numberWithUnsignedLong:0] generality];
+#else
+    return [[NSNumber numberWithUnsignedInt:0] generality];
+#endif
+}
+
+- (NSComparisonResult)compare:(NSNumber *)otherNumber
+{
+    if ([self generality] >= [otherNumber generality]) {
+	NSUInteger other_data = [otherNumber unsignedIntegerValue];
+
+	if (data == other_data)
+	    return NSOrderedSame;
+	else
+	    return (data < other_data) ?
+		      NSOrderedAscending
+		    : NSOrderedDescending;
+    }
+    else
+	return -[otherNumber compare:self];
+}
+
+// Override these from NSValue
+
+- (void)getValue:(void*)value
+{
+    if (value == nil) {
+	[[[InvalidArgumentException new]
+		setReason:@"NULL buffer in -getValue"] raise];
+    }
+    else 
+	*(NSUInteger*)value = data;
+}
+- (void *)valueBytes
+{
+    return &(self->data);
+}
+
+- (const char*)objCType
+{
+    return @encode(NSUInteger);
+}
+
+// NSCopying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    if ([self zone] == zone)
+	return RETAIN(self);
+    else
+	return [[[NSUIntegerNumber class] alloc]
+		    initValue:&data withObjCType:@encode(NSUInteger)];
+}
+
+// NSCoding
+
+- (Class)classForCoder
+{
+    return isa;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+    [coder encodeValueOfObjCType:@encode(NSUInteger) at:&data];
+}
+
+- (id)initWithCoder:(NSCoder*)coder
+{
+    [coder decodeValueOfObjCType:@encode(NSUInteger) at:&data];
+    return self;
+}
+
+@end /* NSUIntegerNumber */

@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/23/11.
+*/
+
 #include <Foundation/NSValue.h>
 
 @interface NSBoolNumber : NSNumber
@@ -102,6 +106,17 @@
 }
 @end
 
+@interface NSIntegerNumber : NSNumber
+{
+    NSInteger data;
+}
+@end
+
+@interface NSUIntegerNumber : NSNumber
+{
+    NSUInteger data;
+}
+@end
 
 /*
   Local Variables:

@@ -322,6 +322,18 @@ static inline NSIntNumber *makeInt(int i)
                            initValue:&value withObjCType:NULL]);
 }
 
++ (NSNumber*)numberWithInteger:(NSInteger)value
+{
+    return AUTORELEASE([[NSIntegerNumber alloc]
+                           initValue:&value withObjCType:NULL]);
+}
+
++ (NSNumber*)numberWithUnsignedInteger:(NSUInteger)value
+{
+    return AUTORELEASE([[NSUIntegerNumber alloc]
+                           initValue:&value withObjCType:NULL]);
+}
+
 - (id)initWithBool:(BOOL)value
 {
     [self shouldNotImplement:_cmd];
@@ -395,6 +407,18 @@ static inline NSIntNumber *makeInt(int i)
 }
 
 - (id)initWithDouble:(double)value
+{
+    [self shouldNotImplement:_cmd];
+    return nil;
+}
+
+- (id)initWithInteger:(NSInteger)value
+{
+    [self shouldNotImplement:_cmd];
+    return nil;
+}
+
+- (id)initWithUnsignedInteger:(NSUInteger)value
 {
     [self shouldNotImplement:_cmd];
     return nil;
@@ -510,6 +534,18 @@ static inline NSIntNumber *makeInt(int i)
 }
 
 - (double)doubleValue
+{
+    [self subclassResponsibility:_cmd];
+    return 0;
+}
+
+- (NSInteger)integerValue
+{
+    [self subclassResponsibility:_cmd];
+    return 0;
+}
+
+- (NSUInteger)unsignedIntegerValue
 {
     [self subclassResponsibility:_cmd];
     return 0;

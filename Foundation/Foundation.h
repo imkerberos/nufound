@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/23/11.
+*/
+
 #ifndef __Foundation_h__
 #define __Foundation_h__
 

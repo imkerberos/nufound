@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/23/11.
+*/
+
 #ifndef __NSValue_h__
 #define __NSValue_h__
 
@@ -95,6 +99,8 @@
 - (id)initWithUnsignedLongLong:(unsigned long long)value;
 - (id)initWithFloat:(float)value;
 - (id)initWithDouble:(double)value;
+- (id)initWithInteger:(NSInteger)value;
+- (id)initWithUnsignedInteger:(NSUInteger)value;
 
 + (NSNumber*)numberWithBool:(BOOL)value; 
 + (NSNumber*)numberWithChar:(signed char)value;
@@ -109,6 +115,8 @@
 + (NSNumber*)numberWithUnsignedLongLong:(unsigned long long)value;
 + (NSNumber*)numberWithFloat:(float)value;
 + (NSNumber*)numberWithDouble:(double)value;
++ (NSNumber*)numberWithInteger:(NSInteger)value;
++ (NSNumber*)numberWithUnsignedInteger:(NSUInteger)value;
 
 // Accessing Data 
 
@@ -125,6 +133,8 @@
 - (unsigned long long)unsignedLongLongValue;
 - (float)floatValue;
 - (double)doubleValue;
+- (NSInteger)integerValue;
+- (NSUInteger)unsignedIntegerValue;
 
 // Converting to string
 

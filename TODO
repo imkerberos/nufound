@@ -1,7 +1,11 @@
-I'm slowly updating all the classes available to fit their SDK 10.6 equivalents. I won't add new classes just yet - hopefully I won't break anything. So far I've done:
+I'm slowly updating all the classes available to fit their SDK 10.6 equivalents. I won't add any (or too many?) new classes just yet - hopefully I won't break anything. So far I've done:
 
 * NSAutoreleasePool
   Added -drain.
 * NSValue
   Added +valueWithRange
   Added -rangeValue.
+* NSInteger and NSUInteger
+  Defined in NSObject.h.
+* NSNumber
+  Added +numberWith.., -initWith.., and -..Value methods for NSInteger and NSUInteger.

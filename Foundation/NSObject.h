@@ -23,6 +23,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/23/11.
+*/
+
 #ifndef __NSObject_h__
 #define __NSObject_h__
 
