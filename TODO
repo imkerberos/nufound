@@ -1,0 +1,4 @@
+I'm slowly updating all the classes available to fit their SDK 10.6 equivalents. I won't add new classes just yet - hopefully I won't break anything. So far I've done:
+
+* NSAutoreleasePool
+  Added -drain.

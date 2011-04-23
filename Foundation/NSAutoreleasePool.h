@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/23/11.
+*/
+
 #ifndef __NSAutoreleasePool_h__
 #define __NSAutoreleasePool_h__
 
@@ -52,6 +56,9 @@ typedef struct __NSAutoreleasePoolChunk {
 
 /* Instance deallocation */
 - (void)dealloc;
+
+/* In a non-GC environment, calls release. If GC is active, no-ops.*/
+- (void)drain;
 
 /* Notes that anObject should be released when the pool 
    at the current top of the stack is freed */

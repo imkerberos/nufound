@@ -22,10 +22,15 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  Edited by rplacd 4/23/11.
+*/
+
 #include <Foundation/common.h>
 #include <Foundation/NSAutoreleasePool.h>
 #include <Foundation/NSThread.h>
 #include <Foundation/NSLock.h>
+#include <Foundation/extensions/GarbageCollector.h>
 
 #include <Foundation/NSException.h>
 #include <Foundation/exceptions/GeneralExceptions.h>
@@ -230,6 +235,14 @@ BOOL __autoreleaseEnableWarning = YES;
 	defaultPool = parentPool;
     
     [super dealloc];
+}
+
+/* 
+ * In a non-GC environment, calls release. If GC is active, no-ops.
+ */
+- (void)drain
+{
+    [self release];
 }
 
 /* 
