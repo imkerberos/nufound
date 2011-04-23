@@ -8,6 +8,7 @@
 #include "sanity.m"
 #include "NSValueSuite.m"
 #include "NSNumberSuite.m"
+#include "NSErrorSuite.m"
 
 int main(int argc, char** argv)
 {
@@ -19,6 +20,7 @@ int main(int argc, char** argv)
     CuSuiteAddSuite(suite, sanitySuite());
     CuSuiteAddSuite(suite, NSValueSuite());
     CuSuiteAddSuite(suite, NSNumberSuite());
+    CuSuiteAddSuite(suite, NSErrorSuite());
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

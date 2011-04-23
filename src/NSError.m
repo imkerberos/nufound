@@ -22,10 +22,122 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #include <Foundation/NSError.h>
 #include <common.h>
+#import <Foundation/NSCoder.h>
+#import <Foundation/NSZone.h>
 
 @implementation NSError
+
+// Creating Error Objects and lifecycle.
++ (id)errorWithDomain:(NSString*)aDomain code:(NSString*)aCode userInfo:(NSDictionary*)aDict
+{
+    return [[[NSError alloc] initWithDomain:aDomain code:aCode userInfo:aDict] autorelease];
+}
+- (id)initWithDomain:(NSString*)aDomain code:(NSString*)aCode userInfo:(NSDictionary*)aDict
+{
+    if(self = [super init]) {
+        domain = [aDomain retain];
+        code = [aCode retain];
+        userInfo = [aDict retain];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [domain release];
+    [code release];
+    [userInfo release];
+    [super dealloc];
+}
+
+//NSCoding implementation.
+- (id)initWithCoder:(NSCoder *)coder
+{
+    if(self = [super init]){ //super is NSObject, after all
+        domain = [[coder decodeObject] retain];
+        code = [[coder decodeObject] retain];
+        code = [[coder decodeObject] retain];
+    }
+    return self;
+}
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:code];
+    [coder encodeObject:domain];
+    [coder encodeObject:userInfo];
+}
+
+// NSCopying implementation.
+- (id)copyWithZone:(NSZone *)zone
+// Does a shallow copy - NSErrors are immutable.
+{
+    return [self retain];
+}
+
+// Getting Error Properties
+- (NSString*)code
+{
+    return code;
+}
+- (NSString*)domain
+{
+    return domain;
+}
+- (NSDictionary*)userInfo
+{
+    return userInfo;
+}
+
+// Localized Properties
+- (NSString*)localizedDescription
+{
+    NSString *desc = [userInfo objectForKey:NSLocalizedDescriptionKey];
+    if(desc != nil) {
+        return desc;
+    } else {
+        return [NSString stringWithFormat:@"%@ error - %@", domain, code];
+    }
+}
+- (NSString*)localizedFailureReason
+{
+    NSString *reason = [userInfo objectForKey:NSLocalizedFailureReasonErrorKey];
+    if(reason != nil) {
+        return reason;
+    } else {
+        return nil;
+    }
+}
+- (NSArray*)localizedRecoveryOptions
+{
+    return [userInfo objectForKey:NSLocalizedRecoveryOptionsErrorKey];
+}
+- (NSArray*)localizedRecoverySuggestion
+{
+    return [userInfo objectForKey:NSLocalizedRecoverySuggestionErrorKey];
+}
+
+// Miscellaneous Properties
+- (id)recoveryAttempter
+{
+    id obj = [userInfo objectForKey:NSRecoveryAttempterErrorKey];
+    if(obj != nil && 
+       ([obj respondsToSelector:@selector(attemptRecoveryFromError:optionIndex:delegate:didRecoverSelector:contextInfo:)] 
+        || [obj respondsToSelector:@selector(attemptRecoveryFromError:optionIndex:)])) {
+        return obj;
+    } else {
+        return nil;
+    }
+}
+- (NSString*)helpAnchor
+{
+    return [userInfo objectForKey:NSHelpAnchorErrorKey];
+}
 
 @end /* NSError */
 

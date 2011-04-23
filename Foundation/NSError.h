@@ -22,16 +22,67 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #ifndef __NSError_H__
 #define __NSError_H__
 
 #include <Foundation/NSObject.h>
+#import <Foundation/NSString.h>
+#import <Foundation/NSDictionary.h>
 
-@interface NSError : NSObject
+@interface NSError : NSObject <NSCoding, NSCopying>
 {
+    NSString *domain;
+    NSString *code;
+    NSDictionary *userInfo;
 }
 
+// Creating Error Objects
++ (id)errorWithDomain:(NSString*)aDomain code:(NSString*)aCode userInfo:(NSDictionary*)aDict;
+- (id)initWithDomain:(NSString*)aDomain code:(NSString*)aCode userInfo:(NSDictionary*)aDict;
+
+// Getting Error Properties
+- (NSString*)code;
+- (NSString*)domain;
+- (NSDictionary*)userInfo;
+
+// Localized Properties
+- (NSString*)localizedDescription;
+- (NSString*)localizedFailureReason;
+- (NSArray*)localizedRecoveryOptions;
+- (NSArray*)localizedRecoverySuggestion;
+
+// Miscellaneous Properties
+- (id)recoveryAttempter;
+- (NSString*)helpAnchor;
+
 @end
+
+// Predefined userInfo keys.
+NSString *const NSLocalizedDescriptionKey = @"Localized description";
+NSString *const NSErrorFailingURLStringKey = @"NSURL erroring URL string";
+NSString *const NSFilePathErrorKey = @"Erroring path";
+NSString *const NSStringEncodingErrorKey = @"String encoding";
+NSString *const NSUnderlyingErrorKey = @"Underlying implementation error";
+NSString *const NSURLErrorKey = @"Erroring NSURL";
+NSString *const NSLocalizedFailureReasonErrorKey = @"Localized reason";
+NSString *const NSLocalizedRecoverySuggestionErrorKey = @"Localized recovery suggestion";
+NSString *const NSLocalizedRecoveryOptionsErrorKey = @"Localized recovery options";
+NSString *const NSRecoveryAttempterErrorKey = @"Recovery attempter";
+NSString *const NSHelpAnchorErrorKey = @"Localized help";
+NSString *const NSURLErrorFailingURLErrorKey = @"NSURL erroring NSURL";
+//this must match NSErrorFailingURLStringKey.
+NSString *const NSURLErrorFailingURLStringErrorKey = @"NSURL erroring URL string";
+NSString *const NSURLErrorFailingURLPeerTrustErrorKey = @"Failed SSL handshake state";
+
+// Predefined error domains.
+const NSString *NSPOSIXErrorDomain = @"POSIX/BSD";
+const NSString *NSOSStatusErrorDomain = @"Classic/Carbon";
+const NSString *NSMachErrorDomain = @"Mach";
+
 
 #endif /* __NSError_H__ */
 
