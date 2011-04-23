@@ -93,7 +93,14 @@
 {
     [[[NSValueException new]
 	    setReason:@"this value does not contain a NSPoint"] raise];
-   return NSMakePoint(0,0);
+    return NSMakePoint(0,0);
+}
+
+- (NSRange)rangeValue
+{
+    [[[NSValueException new]
+            setReason:@"this value does not contain a NSRange"] raise];
+    return NSMakeRange(0, 0);
 }
 
 @end
@@ -615,7 +622,89 @@
     return self;
 }
 
-@end /* NSPointValue */
+@end /* NSPointValue *?
+
+/*
+ * NSRange concrete value
+ */
+
+@implementation NSRangeValue
+
+// Allocating and Initializing 
+
+- initValue:(const void*)value withObjCType:(const char*)type
+{
+    data = *(NSRange*)value;
+    return self;
+}
+
+// NSCopying
+
+- (id)copyWithZone:(NSZone*)zone
+{
+    if (NSShouldRetainWithZone(self, zone))
+	return RETAIN(self);
+    else
+	return [[NSRangeValue alloc]
+		    initValue:(void*)&data withObjCType:NULL];
+}
+
+// Accessing Data 
+
+- (void*)valueBytes
+{
+    return &data;
+}
+
+- (void)getValue:(void*)value
+{
+    if (!value)
+	[[[NSValueException new]
+		setReason:@"NULL buffer in -getValue"] raise];
+    else 
+	*(NSRange*)value = data;
+}
+
+- (const char*)objCType
+{
+    return @encode(NSRange);
+}
+
+- (NSRange)rangeValue;
+{
+    return data;
+} 
+
+- (unsigned)hash
+{
+    return (unsigned)(data.location + data.length);
+}
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"<Range with range %@>",
+	NSStringFromRange(data)];
+}
+
+/* NSCoding */
+
+- (Class)classForCoder
+{
+    return isa;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+    [coder encodeValueOfObjCType:@encode(NSRange) at:&data];
+}
+
+- (id)initWithCoder:(NSCoder*)coder
+{
+    [coder decodeValueOfObjCType:@encode(NSRange) at:&data];
+    return self;
+}
+
+@end /* NSRangeValue */
 
 /*
   Local Variables:

@@ -27,6 +27,7 @@
 
 #include <Foundation/NSValue.h>
 #include <Foundation/NSGeometry.h>
+#import <Foundation/NSRange.h>
 
 @interface NSConcreteValue : NSValue
 
@@ -69,6 +70,12 @@
 @interface NSPointValue : NSConcreteValue
 {
     NSPoint data;
+}
+@end
+
+@interface NSRangeValue : NSConcreteValue
+{
+    NSRange data;
 }
 @end
 

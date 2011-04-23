@@ -6,6 +6,7 @@
 // You won't need to update the makefile, and you won't have to keep including CuTest.
 
 #include "sanity.m"
+#include "NSValueSuite.m"
 
 int main(int argc, char** argv)
 {
@@ -15,6 +16,7 @@ int main(int argc, char** argv)
     CuSuite *suite = CuSuiteNew();
 
     CuSuiteAddSuite(suite, sanitySuite());
+    CuSuiteAddSuite(suite, NSValueSuite());
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

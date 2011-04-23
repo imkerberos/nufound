@@ -71,6 +71,8 @@
 	    return [NSRectValue class];
 	else if(!Strcmp(@encode(NSSize), type))
 	    return [NSSizeValue class];
+        else if(!Strcmp(@encode(NSRange), type))
+            return [NSRangeValue class];
 	else if(!Strcmp(@encode(void*), type))
 	    return [NSPointerValue class];
     }							
@@ -125,6 +127,12 @@
 {
     return AUTORELEASE([[NSSizeValue alloc] 
                            initValue:&size withObjCType:@encode(NSSize)]);
+}
+
++ (NSValue*)valueWithRange:(NSRange)range
+{
+    return AUTORELEASE([[NSRangeValue alloc]
+                          initValue:&range withObjCType:@encode(NSRange)]);
 }
 
 - (id)initWithBytes:(const void *)value objCType:(const char *)type
@@ -222,6 +230,12 @@
 {
     [self subclassResponsibility:_cmd];
     return NSMakePoint(0,0);
+}
+
+- (NSRange)rangeValue
+{
+    [self subclassResponsibility:_cmd];
+    return NSMakeRange(0, 0);
 }
 
 // NSCoding

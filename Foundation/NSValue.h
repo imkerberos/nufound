@@ -27,6 +27,7 @@
 
 #include <Foundation/NSObject.h>
 #include <Foundation/NSGeometry.h>
+#import <Foundation/NSRange.h>
 
 @class NSString;
 @class NSDictionary;
@@ -49,6 +50,7 @@
 + (NSValue*)valueWithPoint:(NSPoint)point;
 + (NSValue*)valueWithRect:(NSRect)rect;
 + (NSValue*)valueWithSize:(NSSize)size;
++ (NSValue*)valueWithRange:(NSRange)range;
 
 // Initializing
 - (id)initWithBytes:(const void*)value objCType:(const char*)type;
@@ -68,6 +70,7 @@
 - (NSRect)rectValue;
 - (NSSize)sizeValue;
 - (NSPoint)pointValue;
+- (NSRange)rangeValue;
 
 @end
 
