@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #ifndef __NSTimer_h__
 #define __NSTimer_h__
 
@@ -57,7 +61,11 @@
 
 + (NSTimer*)timerWithTimeInterval:(NSTimeInterval)seconds
   target:(id)anObject selector:(SEL)aSelector
-  userInfo:(id)anArgument repeats:(BOOL)repeats; 
+  userInfo:(id)anArgument repeats:(BOOL)repeats;
+
+- (id)initWithFireDate:(NSDate *)date 
+  interval:(NSTimeInterval)seconds target:(id)target 
+  selector:(SEL)aSelector userInfo:(id)userInfo repeats:(BOOL)repeats; 
 
 /* Firing the Timer */
 - (void)fire;
@@ -67,6 +75,7 @@
 
 /* Getting Information About the NSTimer */
 - (NSDate*)fireDate;
+- (void)setFireDate:(NSDate*)date;
 
 - (id)userInfo;
 

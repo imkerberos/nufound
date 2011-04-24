@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #include <stdio.h>
 #include <math.h>
 
@@ -90,6 +94,18 @@
     return timer;
 }
 
+- (id)initWithFireDate:(NSDate *)date 
+  interval:(NSTimeInterval)seconds target:(id)target 
+  selector:(SEL)aSelector userInfo:(id)aUserInfo repeats:(BOOL)aRepeats
+{
+    id timer = [[NSTimer timerWithTimeInterval:seconds 
+                         target:target selector:aSelector 
+                         userInfo:aUserInfo repeats:aRepeats]
+                    retain];
+    [timer setFireDate:date];
+    return timer;
+}
+
 - (void)dealloc
 {
     RELEASE(fireDate);
@@ -150,6 +166,12 @@
         nextTime = ceil(ellapsedTimeSinceCreated / timeInterval) * timeInterval;
 	return [self->fireDate addTimeInterval:nextTime];
     }
+}
+- (void)setFireDate:(NSDate*)date
+{
+    [fireDate release];
+    fireDate = [[date laterDate:[NSDate date]]
+                   retain];
 }
 
 - (void)invalidate

@@ -18,3 +18,6 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Added -callStackReturnAddresses
   Added -callStackSymbols
   Note, though - both seem to be clearly intended for backtrace_symbols(), so on __WIN32__ no-ops.
+* NSTimer
+  Added -setFireDate (odd that fireDate already seems to be there...)
+  Added -initWithFireDate:interval:target:selector:userInfo:repeats: (with setFireDate, of course.)
