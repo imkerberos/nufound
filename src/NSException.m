@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #include <Foundation/common.h>
 
 #ifdef HAVE_LIBC_H
@@ -43,6 +47,10 @@
 extern char* getenv(char*);
 #endif
 
+#if !defined(__WIN32__) && !defined(__CYGWIN32__)
+#include <execinfo.h>
+#endif
+
 #include <stdio.h>
 #include <signal.h>
 
@@ -53,6 +61,7 @@ extern char* getenv(char*);
 #include <Foundation/NSThread.h>
 #include <Foundation/NSData.h>
 #include <Foundation/exceptions/GeneralExceptions.h>
+#import <Foundation/NSValue.h>
 
 #include "PrivateThreadData.h"
 
@@ -265,6 +274,57 @@ void _NSRemoveHandler(NSHandler *handler)
 {
     return [self descriptionWithLocale:nil];
 }
+
+#if defined(__WIN32__) || defined(__CYGWIN32__)
+//we cowardly no-op, since I don't want to lug dbghelp.dll with this.
+- (NSArray *)callStackReturnAddresses
+{
+    return nil;
+}
+- (NSArray *)callStackSymbols
+{
+    return nil;
+}
+#else
+//These two methods are NOT TESTED. I don't have a Linux installation with execinfo.h...
+- (NSArray *)callStackReturnAddresses
+{
+    //create a buffer, get the backtrace
+    void *backtrace[20];
+    memset(backtrace, 0, sizeof(void*)*20);
+    int addrs = backtrace(backtrace, 20);
+    
+    //now create an nsarray as far as we can get non-0 ptrs.
+    NSMutableArray *returnAddrs = [NSArray array];
+    for(int offset = 0, offset <= addrs, ++offset) {
+        if(backtrace[offset] != 0) {
+            [array addObject:[NSNumber numberWithUnsignedInteger:(NSUInteger)backtrace[offset]]];
+        } else {
+            break;
+        }
+    }
+
+    return returnAddrs;
+}
+- (NSArray *)callStackSymbols
+{
+    //create a buffer, get the backtrace, COPYPASTA FROM ABOVE.
+    void *backtrace[20];
+    memset(backtrace, 0, sizeof(void*)*20);
+    int addrs = backtrace(backtrace, 20);
+
+    //now get the backtrace_symbols, and convert that into an array of NSString*.
+    char **backtrace_syms = backtrace_symbols(backtrace, addrs);
+    NSMutableArray *returnSyms = [NSArray array];
+    for(int offset = 0; offset <= addrs; ++offset) {
+        [array addObject:[NSString stringWithCString:backtrace_syms[offset]]];
+    }
+    
+    //clean up the backtrace_symbols array and return our new array.
+    free(backtrace_syms);
+    return returnSyms;
+}
+#endif
 
 @end /* NSException */
 

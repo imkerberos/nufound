@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #ifndef __NSException_h__
 #define __NSException_h__
 
@@ -60,6 +64,11 @@
 - (NSString *)name;
 - (NSString *)reason;
 - (NSDictionary *)userInfo;
+
+/* Getting Exception Stack Frames */
+- (NSArray *)callStackReturnAddresses;
+- (NSArray *)callStackSymbols;
+
 
 @end /* NSException */
 

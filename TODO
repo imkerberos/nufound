@@ -14,3 +14,7 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
 * NSTask
   Added -processIdentifier.
   Added -terminationReason.
+* NSException
+  Added -callStackReturnAddresses
+  Added -callStackSymbols
+  Note, though - both seem to be clearly intended for backtrace_symbols(), so on __WIN32__ no-ops.
