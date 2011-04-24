@@ -24,16 +24,31 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #ifndef __NSTask_h__
 #define __NSTask_h__
 
 #include <Foundation/NSObject.h>
+
+enum {
+    NSTaskTerminationReasonExit = 1,
+    NSTaskTerminationReasonUncaughtSignal = 2
+};
+typedef NSInteger NSTaskTerminationReason;
 
 @class NSString, NSArray, NSDictionary, NSFileHandle;
 
 LF_EXPORT NSString *NSTaskDidTerminateNotification;
 
 @interface NSTask : NSObject
+{
+  //by default indicates an "okay" - modified when an unhandled signal is encountered.
+  //terminationReason is the equivalent of a dumb terminal.
+    NSTaskTerminationReason terminationReason;
+}
 
 + (NSTask *)launchedTaskWithLaunchPath:(NSString *)path
   arguments:(NSArray *)arguments;
@@ -51,6 +66,7 @@ LF_EXPORT NSString *NSTaskDidTerminateNotification;
 - (NSArray *)arguments;
 - (NSDictionary *)environment;
 - (NSString *)currentDirectoryPath;
+- (int)processIdentifier;
 
 - (id)standardInput;
 - (id)standardOutput;
@@ -61,10 +77,16 @@ LF_EXPORT NSString *NSTaskDidTerminateNotification;
 - (void)interrupt;
 - (BOOL)isRunning;
 - (int)terminationStatus;
+- (NSTaskTerminationReason)terminationReason;
 - (void)waitUntilExit;
 
 - (unsigned int)processId;
 
+@end
+
+@interface NSTask (privates)
+//much safer to go through the method dispatch mechanism, especially when the initializer is as hairy as this.
+- (void)_setTerminationReason:(NSTaskTerminationReason)aReason;
 @end
 
 #endif /* __NSTask_h__ */

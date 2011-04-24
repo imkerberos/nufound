@@ -11,3 +11,6 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Added +numberWith.., -initWith.., and -..Value methods for NSInteger and NSUInteger.
 * NSError
   The class seemed to be stubbed out - I implemented it.
+* NSTask
+  Added -processIdentifier.
+  Added -terminationReason.

@@ -24,6 +24,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #include <config.h>
 #include <extensions/objc-runtime.h>
 
@@ -66,6 +70,7 @@ NSString *NSTaskDidTerminateNotification = @"NSTaskDidTerminateNotification";
     id aTask;
     
     aTask = [[NSConcreteTask alloc] init];
+    [aTask _setTerminationReason:NSTaskTerminationReasonExit];
     [aTask setLaunchPath:path];
     [aTask setArguments:arguments];
     [aTask setEnvironment:[[NSProcessInfo processInfo] environment]];
@@ -133,6 +138,12 @@ NSString *NSTaskDidTerminateNotification = @"NSTaskDidTerminateNotification";
     return nil;
 }
 
+- (int)processIdentifier
+{
+    [self shouldNotImplement:_cmd];
+    return -1;
+}
+
 - (id)standardInput
 {
     [self shouldNotImplement:_cmd];
@@ -176,6 +187,17 @@ NSString *NSTaskDidTerminateNotification = @"NSTaskDidTerminateNotification";
 {
     [self shouldNotImplement:_cmd];
     return 0;
+}
+
+- (NSTaskTerminationReason)terminationReason
+{
+    [self shouldNotImplement:_cmd];
+    return 0;
+}
+
+- (void)_setTerminationReason:(NSTaskTerminationReason)aReason
+{
+    terminationReason = aReason;
 }
 
 - (void)waitUntilExit

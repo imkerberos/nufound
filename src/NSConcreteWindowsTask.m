@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
+
 #include "NSConcreteWindowsTask.h"
 #include <Foundation/NSArray.h>
 #include <Foundation/NSDictionary.h>
@@ -156,6 +160,11 @@
     return -1;
   }
 }
+- (NSTaskTerminationReason)terminationReason
+{
+  //windows can't exit with a signal, so we just say the task exited just fine.
+  return NSTaskTerminationReasonExit;
+}
 
 - (void)waitUntilExit
 {
@@ -171,6 +180,10 @@
 - (unsigned int)processId
 {
   return (unsigned int)self->pi.dwProcessId;
+}
+- (int)processIdentifier
+{
+  return [self processId];
 }
 
 - (void)launch

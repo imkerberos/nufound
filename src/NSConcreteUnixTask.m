@@ -24,6 +24,9 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/24/11.
+*/
 
 #include <config.h>
 #include <extensions/objc-runtime.h>
@@ -142,7 +145,7 @@ static int debugNSTask = -1;
              forSignal:SIGCLD
              immediatelyNotifyOnSignal:YES];
 #  else
-#    erro how to watch for SIGCHLD on this platform ???
+#    error how to watch for SIGCHLD on this platform ???
 #endif
 #endif /* !__MINGW32__ */
     }
@@ -274,6 +277,10 @@ static int debugNSTask = -1;
 - (unsigned int)processId
 {
     return self->pid;
+}
+- (int)processIdentifier
+{
+    return [self processId];
 }
 
 - (void)_execChild
@@ -415,6 +422,10 @@ static int debugNSTask = -1;
                     /* task abnormally returned */
                     task->status = -1;
                 }
+
+                /* set the termination reason to indicate an uncaught signal? */
+                if (WIFSIGNALED(s))
+                    [task _setTerminationReason:NSTaskTerminationReasonUncaughtSignal];
                 
                 /* mark task object as terminated */
                 task->isRunning        = NO;
@@ -494,6 +505,10 @@ static int debugNSTask = -1;
         /* if task terminated via _exit(), retrieve and set the exit status */
         if (WIFEXITED(s))
             task->status = WEXITSTATUS(s);
+
+        /* set the termination reason to indicate an uncaught signal? */
+        if (WIFSIGNALED(s))
+            [task _setTerminationReason:NSTaskTerminationReasonUncaughtSignal];
     
         /* mark task object as terminated */
         task->isRunning        = NO;
@@ -698,6 +713,15 @@ static int debugNSTask = -1;
 		  initWithReason:@"task is still running!"] raise];
     }
     return status;
+}
+- (NSTaskTerminationReason)terminationReason
+{
+    [self _safePoint];
+    if(self->isRunning) {
+        [[[InvalidArgumentException alloc]
+             initWithReason:@"task is still running!"] raise];
+    }
+    return terminationReason;
 }
 
 - (void)waitUntilExit
