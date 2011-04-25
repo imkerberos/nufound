@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/25/11.
+*/
+
 #ifndef __NSNotification_h__
 #define __NSNotification_h__
 
@@ -38,7 +42,7 @@
  * NSNotification	
  */
 
-@interface NSNotification : NSObject <NSCoding>
+@interface NSNotification : NSObject <NSCoding, NSCopying>
 
 + (NSNotification*)notificationWithName:(NSString *)name object:object;
 + (NSNotification*)notificationWithName:(NSString *)aName
@@ -48,7 +52,7 @@
   userInfo:(NSDictionary *)anUserInfo;
 
 - (NSString *)notificationName;    
-- (NSString *)name;    
+- (NSString *)name;
 - (id)notificationObject;
 - (id)object;
 - (NSDictionary *)userInfo;
