@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/25/11.
+*/
+
 #include <config.h>
 #include <Foundation/common.h>
 #include <Foundation/NSString.h>
@@ -50,6 +54,12 @@
 #if !LIB_FOUNDATION_BOEHM_GC
     NSDeallocateObject((NSObject *)self);
 #endif
+}
+
+- (void)finalize
+{
+    //does nothing, no-op, zilch. Dealloc already takes care of itself, and I'm not quite sure the runtime calls this just yet.
+    return;
 }
 
 // getting the class

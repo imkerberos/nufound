@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/25/11.
+*/
+
 #ifndef __NSProxy_h__
 #define __NSProxy_h__
 
@@ -38,6 +42,7 @@
 + (id)alloc;
 + (id)allocWithZone:(NSZone *)_zone;
 - (void)dealloc;
+- (void)finalize;
 
 // getting the class
 

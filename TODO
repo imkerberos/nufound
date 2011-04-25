@@ -28,3 +28,13 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Checked off - we don't have blocks yet, so no -addObserver...block.
 * NSNotification
   Added NSCopying to the list of protocols supported - apparently it's already been implemented but never exposed.
+* NSInvocation
+  Checks out.
+* NSObject protocol
+  Checks out.
+* NSCoding protocol
+  Checks out.
+* NSCopying protocol
+  Checks out.
+* NSProxy
+  Added (that is to say, stubs out) -finalize;.
