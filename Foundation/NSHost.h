@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/25/11.
+*/
+
 #ifndef __NSHost_h__
 #define __NSHost_h__
 
@@ -46,6 +50,7 @@
 - (BOOL)isEqualToHost:(NSHost *)aHost;
 
 - (NSString *)name;
+- (NSString *)localizedName;
 - (NSArray *)names;
 
 - (NSString *)address;

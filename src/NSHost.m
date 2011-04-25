@@ -23,6 +23,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/25/11.
+*/
+
 #include <config.h>
 
 #ifdef HAVE_LIBC_H
@@ -165,6 +169,13 @@ static NSRecursiveLock     *hostsLock = nil;
     if ([self->names count])
         return [self->names objectAtIndex:0];
     return nil;
+}
+
+- (NSString *)localizedName
+{
+    //we differ from Apple's implementation but still remain semantically correct:
+    //this forwards to name.
+    return [self name];
 }
 
 - (NSArray *)names
