@@ -36,7 +36,7 @@
 
 @class NSDictionary;
 
-@interface NSException : NSObject
+@interface NSException : NSObject <NSCoding, NSCopying>
 {
     NSString     *name;
     NSString     *reason;

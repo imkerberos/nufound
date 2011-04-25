@@ -62,6 +62,8 @@ extern char* getenv(char*);
 #include <Foundation/NSData.h>
 #include <Foundation/exceptions/GeneralExceptions.h>
 #import <Foundation/NSValue.h>
+#import <Foundation/NSZone.h>
+#import <Foundation/NSCoder.h>
 
 #include "PrivateThreadData.h"
 
@@ -325,6 +327,27 @@ void _NSRemoveHandler(NSHandler *handler)
     return returnSyms;
 }
 #endif
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+    [coder encodeObject:userInfo];    
+    [coder encodeObject:reason];    
+    [coder encodeObject:name];
+}
+
+- (id)initWithCoder:(NSCoder*)coder
+{
+    return [[NSException
+                exceptionWithName:[[coder decodeObject] retain]
+                           reason:[[coder decodeObject] retain]
+                         userInfo:[[coder decodeObject] retain]]
+               retain];
+}
+
+- (id)copyWithZone:(NSZone*)zone
+{
+    return [self retain];
+}
 
 @end /* NSException */
 
