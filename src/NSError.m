@@ -31,6 +31,27 @@
 #import <Foundation/NSCoder.h>
 #import <Foundation/NSZone.h>
 
+NSString *const NSLocalizedDescriptionKey = @"Localized description";
+NSString *const NSErrorFailingURLStringKey = @"NSURL erroring URL string";
+NSString *const NSFilePathErrorKey = @"Erroring path";
+NSString *const NSStringEncodingErrorKey = @"String encoding";
+NSString *const NSUnderlyingErrorKey = @"Underlying implementation error";
+NSString *const NSURLErrorKey = @"Erroring NSURL";
+NSString *const NSLocalizedFailureReasonErrorKey = @"Localized reason";
+NSString *const NSLocalizedRecoverySuggestionErrorKey = @"Localized recovery suggestion";
+NSString *const NSLocalizedRecoveryOptionsErrorKey = @"Localized recovery options";
+NSString *const NSRecoveryAttempterErrorKey = @"Recovery attempter";
+NSString *const NSHelpAnchorErrorKey = @"Localized help";
+NSString *const NSURLErrorFailingURLErrorKey = @"NSURL erroring NSURL";
+//this must match NSErrorFailingURLStringKey.
+NSString *const NSURLErrorFailingURLStringErrorKey = @"NSURL erroring URL string";
+NSString *const NSURLErrorFailingURLPeerTrustErrorKey = @"Failed SSL handshake state";
+
+// Predefined error domains.
+const NSString *NSPOSIXErrorDomain = @"POSIX/BSD";
+const NSString *NSOSStatusErrorDomain = @"Classic/Carbon";
+const NSString *NSMachErrorDomain = @"Mach";
+
 @implementation NSError
 
 // Creating Error Objects and lifecycle.

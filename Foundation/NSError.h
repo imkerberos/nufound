@@ -62,26 +62,26 @@
 @end
 
 // Predefined userInfo keys.
-NSString *const NSLocalizedDescriptionKey = @"Localized description";
-NSString *const NSErrorFailingURLStringKey = @"NSURL erroring URL string";
-NSString *const NSFilePathErrorKey = @"Erroring path";
-NSString *const NSStringEncodingErrorKey = @"String encoding";
-NSString *const NSUnderlyingErrorKey = @"Underlying implementation error";
-NSString *const NSURLErrorKey = @"Erroring NSURL";
-NSString *const NSLocalizedFailureReasonErrorKey = @"Localized reason";
-NSString *const NSLocalizedRecoverySuggestionErrorKey = @"Localized recovery suggestion";
-NSString *const NSLocalizedRecoveryOptionsErrorKey = @"Localized recovery options";
-NSString *const NSRecoveryAttempterErrorKey = @"Recovery attempter";
-NSString *const NSHelpAnchorErrorKey = @"Localized help";
-NSString *const NSURLErrorFailingURLErrorKey = @"NSURL erroring NSURL";
+FOUNDATION_EXPORT NSString *const NSLocalizedDescriptionKey;
+FOUNDATION_EXPORT NSString *const NSErrorFailingURLStringKey;
+FOUNDATION_EXPORT NSString *const NSFilePathErrorKey;
+FOUNDATION_EXPORT NSString *const NSStringEncodingErrorKey;
+FOUNDATION_EXPORT NSString *const NSUnderlyingErrorKey;
+FOUNDATION_EXPORT NSString *const NSURLErrorKey;
+FOUNDATION_EXPORT NSString *const NSLocalizedFailureReasonErrorKey;
+FOUNDATION_EXPORT NSString *const NSLocalizedRecoverySuggestionErrorKey;
+FOUNDATION_EXPORT NSString *const NSLocalizedRecoveryOptionsErrorKey;
+FOUNDATION_EXPORT NSString *const NSRecoveryAttempterErrorKey;
+FOUNDATION_EXPORT NSString *const NSHelpAnchorErrorKey;
+FOUNDATION_EXPORT NSString *const NSURLErrorFailingURLErrorKey;
 //this must match NSErrorFailingURLStringKey.
-NSString *const NSURLErrorFailingURLStringErrorKey = @"NSURL erroring URL string";
-NSString *const NSURLErrorFailingURLPeerTrustErrorKey = @"Failed SSL handshake state";
+FOUNDATION_EXPORT NSString *const NSURLErrorFailingURLStringErrorKey;
+FOUNDATION_EXPORT NSString *const NSURLErrorFailingURLPeerTrustErrorKey;
 
 // Predefined error domains.
-const NSString *NSPOSIXErrorDomain = @"POSIX/BSD";
-const NSString *NSOSStatusErrorDomain = @"Classic/Carbon";
-const NSString *NSMachErrorDomain = @"Mach";
+FOUNDATION_EXPORT const NSString *NSPOSIXErrorDomain;
+FOUNDATION_EXPORT const NSString *NSOSStatusErrorDomain;
+FOUNDATION_EXPORT const NSString *NSMachErrorDomain;
 
 
 #endif /* __NSError_H__ */

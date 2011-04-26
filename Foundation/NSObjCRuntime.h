@@ -22,12 +22,36 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/26/11.
+*/
+
 #ifndef __NSObjCRuntime_h__
 #define __NSObjCRuntime_h__
 
 #include <Foundation/NSObject.h>
 
 @class NSString;
+
+#if defined(WIN32)
+    #undef FOUNDATION_EXPORT
+    #if defined(NSBUILDINGFOUNDATION)
+	#define FOUNDATION_EXPORT __declspec(dllexport) extern
+    #else
+	#define FOUNDATION_EXPORT __declspec(dllimport) extern
+    #endif
+    #if !defined(FOUNDATION_IMPORT)
+	#define FOUNDATION_IMPORT __declspec(dllimport) extern
+    #endif
+#endif
+
+#if !defined(FOUNDATION_EXPORT)
+    #define FOUNDATION_EXPORT extern
+#endif
+
+#if !defined(FOUNDATION_IMPORT)
+    #define FOUNDATION_IMPORT extern
+#endif
 
 /* Convert to and from a String */
 LF_EXPORT Class    NSClassFromString(NSString *aClassName);
