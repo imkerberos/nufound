@@ -38,3 +38,15 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Checks out.
 * NSProxy
   Added (that is to say, stubs out) -finalize;.
+* NSMutableCopying
+  Checks out.
+* NSData
+  Added NSDataWritingOptions
+  Added NSDataReadingOptions (these are disregarded, though.)
+  Added +dataWithBytesNoCopy:length:freeWhenDone
+  Added -[init/data]WithContentsOfURL:option:error: (this works well with -path)
+  Added -writeToFile:options:error: (this as well, mind you)
+  Added -writeToURL:atomically:/options:error: - this is just a frontend to writeToFile since OSX only supports file:// URLS anyway.
+* NSDate
+  Added -descriptionWithCalendarFormat:timeZone:locale: to header file.
+  Added -dateByAddingTimeInterval: (this just feeds into addTimeInterval.)

@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 4/27/11.
+*/
+
 #include "common.h"
 
 #if HAVE_SYS_TIME_H
@@ -272,6 +276,11 @@ static NSDate *distantFuture = nil, *distantPast = nil;
 {
     return [self timeIntervalSinceReferenceDate] -
 	    [NSDate timeIntervalSinceReferenceDate];
+}
+
+- (id)dateByAddingTimeInterval:(NSTimeInterval)seconds
+{
+    return [self dateByAddingTimeInterval:seconds];
 }
 
 - (id)addTimeInterval:(NSTimeInterval)seconds

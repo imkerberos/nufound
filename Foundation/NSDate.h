@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 4/27/11.
+*/
+
 #ifndef __NSDate_h__
 #define __NSDate_h__
 
@@ -87,6 +91,7 @@ JD 0.0 = 12 noon on 1 Jan 4713 B.C.E., which is -51909.5L*24*60*60
 - (NSTimeInterval)timeIntervalSinceReferenceDate;
 - (NSTimeInterval)timeIntervalSinceDate:(NSDate*)anotherDate;
 - (NSTimeInterval)timeIntervalSinceNow;
+- (id)dateByAddingTimeInterval:(NSTimeInterval)seconds;
 - (id)addTimeInterval:(NSTimeInterval)seconds;
 - (NSTimeInterval)timeIntervalSince1970;
 
@@ -233,6 +238,7 @@ JD 0.0 = 12 noon on 1 Jan 4713 B.C.E., which is -51909.5L*24*60*60
   timeZone:(NSTimeZone*)timeZone;
 - (NSString*)descriptionWithCalendarFormat:(NSString*)format
   locale:(NSDictionary*)locale;
+- (NSString *)descriptionWithCalendarFormat:(NSString *)formatString timeZone:(NSTimeZone *)aTimeZone locale:(id)localeDictionary;
 
 @end
 
