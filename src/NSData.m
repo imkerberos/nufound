@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+   First edited by rplacd 4/26/11.
+*/
+
 #include <Foundation/common.h>
 #include <Foundation/NSData.h>
 #include <Foundation/NSString.h>
@@ -67,6 +71,11 @@
                            length:length]);
 }
 
++ (id)dataWithBytesNoCopy:(void *)bytes length:(NSUInteger)length freeWhenDone:(BOOL)freeWhenDone
+{
+    return [[[NSData alloc] initWithBytesNoCopy:bytes length:length freeWhenDone:freeWhenDone] autorelease];
+}
+
 + (id)dataWithContentsOfFile:(NSString*)path
 {
     return AUTORELEASE([[self allocWithZone:NSDefaultMallocZone()]
@@ -76,6 +85,11 @@
 {
     return AUTORELEASE([[self allocWithZone:NSDefaultMallocZone()]
                            initWithContentsOfURL:_url]);
+}
+
++ (id)dataWithContentsOfURL:(NSURL *)aURL options:(NSDataReadingOptions)mask error:(NSError **)errorPtr
+{
+    return [[[self alloc] initWithContentsOfURL:aURL options:mask error:errorPtr] autorelease];
 }
 
 + (id)dataWithContentsOfMappedFile:(NSString*)path
@@ -128,6 +142,18 @@
         return [self initWithContentsOfFile:[_url path]];
     
     return [self initWithData:[_url resourceDataUsingCache:NO]];
+}
+
+- (id)initWithContentsOfURL:(NSURL *)aURL options:(NSDataReadingOptions)mask error:(NSError **)errorPtr
+{
+    //disregard the options - these correspond to Machy I/O.
+    @try {
+        self = [self initWithContentsOfURL:aURL];
+    }    
+    @catch (NSException *exception) {
+        *errorPtr = [NSError errorWithDomain:@"Foundation" code:[exception name] userInfo:[exception userInfo]];
+    }
+    return self;
 }
 
 - (id)initWithContentsOfMappedFile:(NSString*)path
@@ -274,6 +300,39 @@
   atomically:(BOOL)useAuxiliaryFile
 {
     return writeToFile(path, self, useAuxiliaryFile);
+}
+
+- (BOOL)writeToURL:(NSURL*)path
+  atomically:(BOOL)useAuxiliaryFile
+{
+    return [self writeToFile:[path path] atomically:useAuxiliaryFile];
+}
+
+- (BOOL)writeToFile:(NSString*)path
+            options:(NSDataWritingOptions)mask
+              error:(NSError**)errorPtr
+{
+    //this does nothing in the Cocotron and I have never managed to divine through experimentation what type of NSErrors Apple passes back. So I'm just copying the exception... I can't guarantee this will play will with existing ObjC apps.
+    BOOL atomicallyp = (1UL << 0) == mask;
+    BOOL result = YES;
+    @try {
+        result = [self writeToFile:path atomically:atomicallyp];
+    }
+    @catch (NSException *exception) {
+        *errorPtr = [NSError errorWithDomain:@"Foundation" code:[exception name] userInfo:[exception userInfo]];
+    }
+    if(result == NO) {
+        return result;
+    }
+}
+
+- (BOOL)writeToURL:(NSURL*)path
+           options:(NSDataWritingOptions)mask
+             error:(NSError**)errorPtr
+{
+    return [self writeToFile:[path path]
+                     options:mask
+                       error:errorPtr];
 }
 
 - (unsigned int)deserializeAlignedBytesLengthAtCursor:(unsigned int*)cursor

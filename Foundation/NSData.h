@@ -22,16 +22,35 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 4/26/11.
+*/
+
 #ifndef __NSData_h__
 #define __NSData_h__
 
 #include <Foundation/NSObject.h>
 #include <Foundation/NSRange.h>
 #include <Foundation/NSSerialization.h>
+#import <Foundation/NSURL.h>
+#import <Foundation/NSError.h>
 
-@class NSZone;
 @class NSURL;
 @class NSString;
+
+enum {
+  NSDataWritingAtomic = 1UL << 0,
+  NSAtomicWrite = NSDataWritingAtomic
+};
+typedef NSUInteger NSDataWritingOptions;
+
+enum {
+   NSDataReadingMapped =   1UL << 0,
+   NSDataReadingUncached = 1UL << 1,
+   NSMappedRead = NSDataReadingMapped,
+   NSUncachedRead = NSDataReadingUncached
+};
+typedef NSUInteger NSDataReadingOptions;
 
 @interface NSData : NSObject <NSCoding, NSCopying, NSMutableCopying>
 
@@ -44,8 +63,10 @@
   length:(unsigned int)length;
 + (id)dataWithContentsOfFile:(NSString *)path;
 + (id)dataWithContentsOfURL:(NSURL *)_url;
++ (id)dataWithContentsOfURL:(NSURL *)aURL options:(NSDataReadingOptions)mask error:(NSError **)errorPtr;
 + (id)dataWithContentsOfMappedFile:(NSString *)path;
 + (id)dataWithData:(NSData *)aData;
++ (id)dataWithBytesNoCopy:(void *)bytes length:(NSUInteger)length freeWhenDone:(BOOL)freeWhenDone;
 - (id)initWithBytes:(const void*)bytes
   length:(unsigned int)length;
 - (id)initWithBytesNoCopy:(void*)bytes
@@ -54,7 +75,7 @@
 - (id)initWithContentsOfURL:(NSURL *)_url;
 - (id)initWithContentsOfMappedFile:(NSString *)path;
 - (id)initWithData:(NSData *)data;
-
+- (id)initWithContentsOfURL:(NSURL *)aURL options:(NSDataReadingOptions)mask error:(NSError **)errorPtr;
 - (id)initWithBytesNoCopy:(void *)_bytes length:(unsigned)_length 
   freeWhenDone:(BOOL)_freeMemory;
 
@@ -74,7 +95,15 @@
 
 /* Storing Data */
 - (BOOL)writeToFile:(NSString*)path
-	atomically:(BOOL)useAuxiliaryFile;
+         atomically:(BOOL)useAuxiliaryFile;
+- (BOOL)writeToURL:(NSURL*)path
+        atomically:(BOOL)useAuxiliaryFile;
+- (BOOL)writeToFile:(NSString*)path
+            options:(NSDataWritingOptions)mask
+              error:(NSError**)errorPtr;
+- (BOOL)writeToURL:(NSURL*)path
+           options:(NSDataWritingOptions)mask
+             error:(NSError**)errorPtr;
 
 /* Deserializing Data */
 - (unsigned int)deserializeAlignedBytesLengthAtCursor:(unsigned int*)cursor;
