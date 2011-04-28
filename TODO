@@ -50,3 +50,7 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
 * NSDate
   Added -descriptionWithCalendarFormat:timeZone:locale: to header file.
   Added -dateByAddingTimeInterval: (this just feeds into addTimeInterval.)
+* NSMethodSignature
+  Checks out.
+* NSInvocation
+  Checks out.
