@@ -83,7 +83,7 @@ JD 0.0 = 12 noon on 1 Jan 4713 B.C.E., which is -51909.5L*24*60*60
 /* Representing Dates */
 - (NSString*)description;
 - (NSString*)descriptionWithCalendarFormat:(NSString*)formatString
-  timeZone:(NSTimeZone*)aTimeZone locale:(NSDictionary*)localeDictionary;
+            timeZone:(NSTimeZone*)aTimeZone locale:(NSDictionary*)localeDictionary;
 - (NSString*)descriptionWithLocale:(NSDictionary*)localeDictionary;
 
 /* Adding and Getting Intervals */
@@ -238,7 +238,7 @@ JD 0.0 = 12 noon on 1 Jan 4713 B.C.E., which is -51909.5L*24*60*60
   timeZone:(NSTimeZone*)timeZone;
 - (NSString*)descriptionWithCalendarFormat:(NSString*)format
   locale:(NSDictionary*)locale;
-- (NSString *)descriptionWithCalendarFormat:(NSString *)formatString timeZone:(NSTimeZone *)aTimeZone locale:(id)localeDictionary;
+- (NSString *)descriptionWithCalendarFormat:(NSString *)formatString timeZone:(NSTimeZone *)aTimeZone locale:(NSDictionary*)localeDictionary;
 
 @end
 
