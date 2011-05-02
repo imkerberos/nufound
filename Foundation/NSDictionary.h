@@ -87,6 +87,7 @@
 - (NSString*)descriptionWithLocale:(NSDictionary*)localeDictionary
   indent:(unsigned int)level;
 - (BOOL)writeToFile:(NSString*)path atomically:(BOOL)useAuxiliaryFile;
+- (BOOL)writeToURL:(NSURL*)path atomically:(BOOL)useAuxiliaryFile;
 
 /* From adopted/inherited protocols */
 

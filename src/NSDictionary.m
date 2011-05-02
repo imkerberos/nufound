@@ -597,6 +597,11 @@ static NSArray *emptyArray = nil;
     return [description writeToFile:path atomically:useAuxiliaryFile];
 }
 
+- (BOOL)writeToURL:(NSURL*)path atomically:(BOOL)useAuxiliaryFile
+{
+    return [self writeToFile:[path path] atomically:useAuxiliaryFile];
+}
+
 /* From adopted/inherited protocols */
 
 - (unsigned)hash
