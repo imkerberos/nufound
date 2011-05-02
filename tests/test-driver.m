@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "CuTest.h"
 #import <NSAutoreleasePool.h>
+#import <NSProcessInfo.h>
 
 // Inline all the tests you need here.
 // You won't need to update the makefile, and you won't have to keep including CuTest.
@@ -9,6 +11,7 @@
 #include "NSValueSuite.m"
 #include "NSNumberSuite.m"
 #include "NSErrorSuite.m"
+#include "NSDictionarySuite.m"
 
 int main(int argc, char** argv)
 {
@@ -21,6 +24,7 @@ int main(int argc, char** argv)
     CuSuiteAddSuite(suite, NSValueSuite());
     CuSuiteAddSuite(suite, NSNumberSuite());
     CuSuiteAddSuite(suite, NSErrorSuite());
+    CuSuiteAddSuite(suite, NSDictionarySuite());
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

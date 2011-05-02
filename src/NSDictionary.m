@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 5/2/11.
+*/
+
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -439,6 +443,21 @@ static NSArray *emptyArray = nil;
 	if ([[self objectForKey:key] isEqual:[other objectForKey:key]]==NO)
 	    return NO;
     return YES;
+}
+
+/* Sorting Dictionaries */
+
+- (NSArray *)keysSortedByValueUsingSelector:(SEL)comparator
+{
+    NSMutableArray *ret = [[NSMutableArray alloc] init];
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSEnumerator *enumr = [[[self allValues] sortedArrayUsingSelector:comparator] objectEnumerator];
+    id val = nil;
+    while(val = [enumr nextObject], val) {
+        [ret addObjectsFromArray:[self allKeysForObject:val]];
+    }    
+    [pool release];
+    return ret;
 }
 
 /* Storing Dictionaries */

@@ -54,3 +54,7 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Checks out.
 * NSInvocation
   Checks out.
+* NSDictionary
+  (NSFileManager and block-dependent methods have not been implemented.)
+  Added writeToURL:atomically
+  Added keysSortedByValueUsingSelector:

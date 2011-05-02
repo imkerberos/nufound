@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 5/2/11.
+*/
+
 #ifndef __NSDictionary_h__
 #define __NSDictionary_h__
 
@@ -78,6 +82,10 @@
 /* Comparing Dictionaries */
 
 - (BOOL)isEqualToDictionary:(NSDictionary*)other;
+
+/* Sorting Dictionaries */
+
+- (NSArray *)keysSortedByValueUsingSelector:(SEL)comparator;
 
 /* Storing Dictionaries */
 
