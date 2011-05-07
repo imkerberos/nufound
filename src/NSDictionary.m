@@ -814,6 +814,15 @@ static NSArray *emptyArray = nil;
     [self subclassResponsibility:_cmd];
 }
 
+- (void)setValue:(id)value forKey:(NSString *)key
+{
+    if(value == nil) {
+        [self removeObjectForKey:key];
+    } else {
+        [self setObject:value forKey:key];
+    }
+}
+
 - (void)setDictionary:(NSDictionary*)otherDictionary
 {
     [self removeAllObjects];

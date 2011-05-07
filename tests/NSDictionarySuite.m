@@ -23,9 +23,20 @@ void NSDictionaryKeysSortedUsingSelector(CuTest *test)
     CuAssertTrue(test, [[drArray objectAtIndex:2] isEqualToString:@"two"]);
 }
 
+void NSMutableDictSetValueForKey(CuTest *test)
+//test both addition and removal with nil.
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:[NSNumber numberWithInt:3] forKey:@"key"];
+    CuAssertTrue(test, [dict valueForKey:@"key"] != nil);
+    [dict setValue:nil forKey:@"key"];
+    CuAssertTrue(test, [dict valueForKey:@"key"] == nil);
+}
+
 CuSuite *NSDictionarySuite()
 {
     CuSuite *suite = CuSuiteNew();
     SUITE_ADD_TEST(suite, NSDictionaryKeysSortedUsingSelector);
+    SUITE_ADD_TEST(suite, NSMutableDictSetValueForKey);
     return suite;
 }

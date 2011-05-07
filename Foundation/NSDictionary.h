@@ -131,6 +131,7 @@
 - (void)removeObjectForKey:(id)theKey;
 - (void)removeObjectsForKeys:(NSArray*)keyArray;
 - (void)setObject:(id)anObject forKey:(id)aKey;
+- (void)setValue:(id)value forKey:(NSString *)key;
 - (void)setDictionary:(NSDictionary*)otherDictionary;
 
 @end /* NSMutableDictionary */

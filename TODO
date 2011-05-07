@@ -58,3 +58,5 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   (NSFileManager and block-dependent methods have not been implemented.)
   Added writeToURL:atomically
   Added keysSortedByValueUsingSelector:
+* NSMutableDictionary
+  Added -setValue:forKey:
