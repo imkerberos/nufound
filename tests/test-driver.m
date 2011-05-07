@@ -12,6 +12,7 @@
 #include "NSNumberSuite.m"
 #include "NSErrorSuite.m"
 #include "NSDictionarySuite.m"
+#include "NSSetSuite.m"
 
 int main(int argc, char** argv)
 {
@@ -25,6 +26,7 @@ int main(int argc, char** argv)
     CuSuiteAddSuite(suite, NSNumberSuite());
     CuSuiteAddSuite(suite, NSErrorSuite());
     CuSuiteAddSuite(suite, NSDictionarySuite());
+    CuSuiteAddSuite(suite, NSSetSuite());
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);

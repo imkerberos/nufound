@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 5/2/11.
+*/
+
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -84,6 +88,27 @@
 + (id)setWithSet:(NSSet*)aSet
 {
     return AUTORELEASE([[self alloc] initWithSet:aSet]);
+}
+
+- (NSSet *)setByAddingObject:(id)anObject
+{
+    NSMutableSet *ret = [self mutableCopyWithZone:NULL];
+    [ret addObject:anObject];
+    return ret;
+}
+
+- (NSSet *)setByAddingObjectsFromSet:(NSSet *)other
+{
+    NSMutableSet *ret = [self mutableCopyWithZone:NULL];
+    [ret unionSet:other];
+    return ret;
+}
+
+- (NSSet *)setByAddingObjectsFromArray:(NSArray *)other
+{
+    NSMutableSet *ret = [self mutableCopyWithZone:NULL];
+    [ret addObjectsFromArray:other];
+    return ret;    
 }
 
 - (id)init
@@ -317,6 +342,31 @@
 	if (![otherSet containsObject:key])
 	    return NO;
     return YES;
+}
+
+- (id)valueForKey:(NSString *)key
+{
+    NSMutableArray *results = [NSMutableArray array];
+    NSEnumerator *enr = [self objectEnumerator];
+    id curr;
+    while(curr = [enr nextObject]) {
+        if([curr respondsToSelector:@selector(valueForKey:)]) {
+            [results addObject:[curr valueForKey:key]];
+        }
+    }
+    return [NSSet setWithArray:results];
+    
+}
+
+- (void)setValue:(id)value forKey:(NSString *)key
+{
+    NSEnumerator *enr = [self objectEnumerator];
+    id curr;
+    while(curr = [enr nextObject]) {
+        if([curr respondsToSelector:@selector(setValue:forKey:)]) {
+            [curr setValue:value forKey:key];
+        }
+    }
 }
 
 /* Creating a String Description of the Set */
@@ -565,6 +615,19 @@
 - (void)removeObject:(id)object
 {
     [self subclassResponsibility:_cmd];
+}
+
+- (void)filterUsingPredicate:(NSPredicate *)predicate
+{
+    NSMutableSet *minus = [NSMutableSet set];
+    NSEnumerator *enr = [self objectEnumerator];
+    id val;
+    while(val = [enr nextObject]) {
+        if([predicate evaluateWithObject:val]) {
+            [minus addObject:val];
+        }
+    }
+    [self minusSet:minus];
 }
 
 - (id)copyWithZone:(NSZone*)zone

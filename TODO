@@ -60,3 +60,10 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Added keysSortedByValueUsingSelector:
 * NSMutableDictionary
   Added -setValue:forKey:
+* NSSet
+  Added -setByAddingObject[sFromArray/sFromSet] (we go down to MutableSet, though)
+  Added -valueForKey:
+  Added -setValue:forKey
+  (Block and KVC  dependent methods have been left out yet again.)
+* NSMutableSet
+  Added -filterUsingPredicate:

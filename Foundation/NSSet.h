@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 8/2/11.
+*/
+
 #ifndef __NSSet_h__
 #define __NSSet_h__
 
@@ -30,6 +34,7 @@
 #include <Foundation/NSMapTable.h>
 #include <Foundation/NSHashTable.h>
 #include <Foundation/NSUtilities.h>
+#import <Foundation/NSPredicate.h>
 
 @class NSString;
 @class NSArray;
@@ -51,6 +56,9 @@
 + (id)setWithObjects:(id)firstObj,...;
 + (id)setWithObjects:(id*)objects count:(unsigned int)count;
 + (id)setWithSet:(NSSet*)aSet;
+- (NSSet *)setByAddingObject:(id)anObject;
+- (NSSet *)setByAddingObjectsFromSet:(NSSet *)other;
+- (NSSet *)setByAddingObjectsFromArray:(NSArray *)other;
 - (id)initWithArray:(NSArray*)array;
 - (id)initWithObjects:(id)firstObj,...;
 - (id)initWithObject:(id)firstObj arglist:(va_list)arglist;
@@ -80,6 +88,8 @@
 - (BOOL)intersectsSet:(NSSet*)otherSet;
 - (BOOL)isEqualToSet:(NSSet*)otherSet;
 - (BOOL)isSubsetOfSet:(NSSet*)otherSet;
+- (id)valueForKey:(NSString *)key;
+- (void)setValue:(id)value forKey:(NSString *)key;
 
 /* Creating a String Description of the Set */
 
@@ -113,6 +123,7 @@
 - (void)minusSet:(NSSet *)other;
 - (void)removeAllObjects;
 - (void)removeObject:(id)object;
+- (void)filterUsingPredicate:(NSPredicate *)predicate;
 
 @end
 
