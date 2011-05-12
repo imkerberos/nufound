@@ -65,6 +65,7 @@
 #include <Foundation/NSDistributedLock.h>
 #include <Foundation/NSEnumerator.h>
 #include <Foundation/NSException.h>
+#include <Foundation/NSError.h>
 #include <Foundation/NSFileHandle.h>
 #include <Foundation/NSFileManager.h>
 #include <Foundation/NSFormatter.h>
@@ -89,6 +90,7 @@
 #include <Foundation/NSPortNameServer.h>
 #include <Foundation/NSPathUtilities.h>
 #include <Foundation/NSPosixFileDescriptor.h>
+#include <Foundation/NSPredicate.h>
 #include <Foundation/NSProcessInfo.h>
 #include <Foundation/NSRange.h>
 #include <Foundation/NSRunLoop.h>
