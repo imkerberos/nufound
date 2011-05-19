@@ -73,6 +73,7 @@
 #include <Foundation/NSHashTable.h>
 #include <Foundation/NSHost.h>
 #include <Foundation/NSInvocation.h>
+#include <Foundation/NSIndexSet.h>
 #include <Foundation/NSKeyValueCoding.h>
 #include <Foundation/NSLock.h>
 #include <Foundation/NSMapTable.h>

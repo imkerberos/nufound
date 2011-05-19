@@ -17,6 +17,7 @@ SOURCES = \
 	src/NSNotification.m src/NSNotificationQueue.m src/NSNotificationCenter.m \
         src/NSError.m \
         src/NSPredicate.m \
+        src/NSIndexSet.m \
 	src/NSDate.m src/NSConcreteDate.m \
 	src/NSScanner.m src/NSConcreteScanner.m \
 	src/NSCalendarDate.m src/NSCalendarDateScannerHandler.m src/NSCalendarDateScanf.m \

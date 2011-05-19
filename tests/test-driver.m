@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "CuTest.h"
 #import <NSAutoreleasePool.h>
 #import <NSProcessInfo.h>
@@ -13,9 +14,11 @@
 #include "NSErrorSuite.m"
 #include "NSDictionarySuite.m"
 #include "NSSetSuite.m"
+#include "NSIndexSetSuite.m"
 
 int main(int argc, char** argv)
 {
+    [NSProcessInfo initializeWithArguments:argv count:argc environment:environ];
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
     CuString *output = CuStringNew();
@@ -27,6 +30,7 @@ int main(int argc, char** argv)
     CuSuiteAddSuite(suite, NSErrorSuite());
     CuSuiteAddSuite(suite, NSDictionarySuite());
     CuSuiteAddSuite(suite, NSSetSuite());
+    CuSuiteAddSuite(suite, NSIndexSetSuite());
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);
