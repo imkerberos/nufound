@@ -47,7 +47,23 @@
 - (NSUInteger)indexGreaterThanOrEqualToIndex:(NSUInteger)index;
 @end
 
-@interface NSMutableIndexSet
+@interface NSMutableIndexSet : NSIndexSet
+// Adding Indexes
+- (void)addIndex:(NSUInteger)index;
+- (void)addIndexes:(NSIndexSet *)indexSet;
+- (void)addIndexesInRange:(NSRange)indexRange;
+
+// Removing Indexes
+- (void)removeIndex:(NSUInteger)index;
+- (void)removeIndexes:(NSIndexSet *)indexSet;
+- (void)removeAllIndexes;
+- (void)removeIndexesInRange:(NSRange)indexRange;
+
+// Shifting Index Groups.
+//Poorly defined. My take:
+//Delta determines whether we shift the indexes to the "left" or "right" of startIndex
+//as well as offset.
+- (void)shiftIndexesStartingAtIndex:(NSUInteger)startIndex by:(NSInteger)delta;
 
 @end
 
