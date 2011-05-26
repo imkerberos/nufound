@@ -71,4 +71,5 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Checks out.
 * NSIndexSet
   Implemented - NSArray is dependent.
-
+* NSMutableIndexSet
+  Implemented.

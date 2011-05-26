@@ -313,30 +313,6 @@
     return [[[NSMutableIndexSet alloc] initWithIndexesInRange:indexRange] autorelease];
 }
 
-- (id)init
-{
-    return self = [super init];
-}
-
-- (id)initWithIndex:(NSUInteger)index
-{
-    return self = [super initWithIndex:index];
-}
-
-- (id)initWithIndexesInRange:(NSRange)indexRange
-{
-    return self = [super initWithIndexesInRange:indexRange];
-}
-
-- (id)initWithIndexSet:(NSIndexSet *)indexSet
-{
-    if(self = [super init]) {
-        indices = [[indexSet indices] retain];
-    }
-    //indices are sorted here as well, remember!
-    return self;
-}
-
 //Adding Indexes
 
 - (void)addIndex:(NSUInteger)index
