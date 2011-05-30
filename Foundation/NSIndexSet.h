@@ -11,7 +11,7 @@
 #import <Foundation/NSValue.h>
 #import <Foundation/NSCoder.h>
 
-@interface NSIndexSet : NSObject <NSCoding, NSCopying/*, NSMutableCopying*/>
+@interface NSIndexSet : NSObject <NSCoding, NSCopying, NSMutableCopying>
 {
     //sets, unfortunately, aren't ordered - indexsets are, though.
     //so make the assumption that no index should be repeated.

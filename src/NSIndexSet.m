@@ -169,14 +169,12 @@
     return ret;
 }
 
-/*
 - (id)mutableCopyWithZone:(NSZone *)zone
 {
     NSMutableIndexSet *ret = [[[NSMutableIndexSet allocWithZone:zone] init] autorelease];
-    [ret setIndices:indices];
+    [ret setIndices:[[indices copyWithZone:zone] autorelease]];
     return ret;
 }
-*/
 
 // Querying Index Sets
 - (BOOL)containsIndex:(NSUInteger)index
