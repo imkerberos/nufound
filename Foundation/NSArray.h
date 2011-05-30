@@ -22,16 +22,22 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 5/30/11.
+*/
+
 #ifndef __NSArray_h__
 #define __NSArray_h__
 
 #include <Foundation/NSObject.h>
 #include <Foundation/NSRange.h>
+#import <Foundation/NSIndexSet.h>
 
 @class NSString;
 @class NSEnumerator;
 @class NSDictionary;
 @class NSURL;
+@class NSIndexSet; //in fact, the above import might not get included at all based on the compile order.
 
 @interface NSArray : NSObject <NSCoding, NSCopying, NSMutableCopying>
 
@@ -59,6 +65,7 @@
 - (unsigned int)indexOfObjectIdenticalTo:(id)anObject inRange:(NSRange)aRange;
 - (id)lastObject;
 - (id)objectAtIndex:(unsigned int)index;
+- (NSArray*)objectsAtIndexes:(NSIndexSet*)indexes;
 - (void)getObjects:(id *)buffer;
 - (void)getObjects:(id *)buffer range:(NSRange)range;
 - (NSEnumerator*)objectEnumerator;

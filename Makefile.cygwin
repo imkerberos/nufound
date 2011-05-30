@@ -42,7 +42,7 @@ SOURCES = \
 	src/StringExceptions.m src/NSValueExceptions.m src/NSCoderExceptions.m \
 	src/NSInvocationExceptions.m src/NSFileHandleExceptions.m 
 CFLAGS = -g -I. -IFoundation
-OBJCFLAGS = -fconstant-string-class=NSConstantString -lobjc
+OBJCFLAGS = -fconstant-string-class=NSConstantString -fobjc-exceptions -lobjc
 LDFLAGS = -shared
 # edit this for each platform!
 PLATFORMLIBNAME = libnufound.dll
@@ -58,7 +58,7 @@ lib:
 	gcc $(foreach file, $(SOURCES), build/$(notdir $(file)).o) $(LDFLAGS) $(OBJCFLAGS) -o build/$(PLATFORMLIBNAME)
 
 test: lib
-	gcc $(CFLAGS) -Lbuild tests/CuTest.c tests/test-driver.m -lnufound $(OBJCFLAGS) -o build/tests
+	gcc $(CFLAGS) -Lbuild tests/CuTest.c tests/test-driver.m $(OBJCFLAGS) -lnufound -o build/tests
 	cd build; ./tests
 
 clean:

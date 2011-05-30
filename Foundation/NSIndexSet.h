@@ -11,6 +11,8 @@
 #import <Foundation/NSValue.h>
 #import <Foundation/NSCoder.h>
 
+@class NSMutableArray;
+
 @interface NSIndexSet : NSObject <NSCoding, NSCopying, NSMutableCopying>
 {
     //sets, unfortunately, aren't ordered - indexsets are, though.
@@ -45,6 +47,18 @@
 - (NSUInteger)indexLessThanOrEqualToIndex:(NSUInteger)index;
 - (NSUInteger)indexGreaterThanIndex:(NSUInteger)index;
 - (NSUInteger)indexGreaterThanOrEqualToIndex:(NSUInteger)index;
+@end
+
+//this, while not being part of Apple's official API, is our only way to access the internals without implementing blocks.
+@interface NSIndexSet (Privates)
+- (NSMutableArray*)indices;
+- (void)setIndices:(NSMutableArray*)newIndices;
+- (void)cleanUpIndices; //sorts and removes dupes.
+//Op - is either "gt" "gte" "lt" "lte"...
+//TopMost - if YES, use the last value in the list of eligible indices
+// - otherwise use the first value
+//returns NSNotFound when indices are empty.
+- (NSUInteger)searchIndices:(NSString*)op withTarget:(NSUInteger)target returningGreatest:(BOOL)greatest_p;
 @end
 
 @interface NSMutableIndexSet : NSIndexSet

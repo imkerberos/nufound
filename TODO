@@ -71,5 +71,15 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Checks out.
 * NSIndexSet
   Implemented - NSArray is dependent.
+  (Block and KVC dependents left out)
 * NSMutableIndexSet
   Implemented.
+* NSArray
+  Added -objectsAtIndexes:
+  Added -filteredArrayUsingPredicate:
+  Added -sortedArrayUsingFunction:
+  No-oped -sortedArrayHint and -sortedArrayUsingFunction:context:hint:
+  Added -pathsMatchingExtensions:
+  Added -writeToFile:atomically:
+  Added -writeToURL:atomically over -writeToFile:...
+  

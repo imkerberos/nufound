@@ -22,6 +22,10 @@
    or in connection with the use or performance of this software.
 */
 
+/*
+  First edited by rplacd 5/30/11.
+*/
+
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,6 +41,7 @@
 #include <Foundation/PropertyListParser.h>
 #include <Foundation/NSUtilities.h>
 #include <Foundation/NSURL.h>
+#import <Foundation/NSException.h>
 
 #include <Foundation/exceptions/GeneralExceptions.h>
 
@@ -343,6 +348,26 @@ static Class NSConcreteArrayClass = Nil;
 {
     [self subclassResponsibility:_cmd];
     return self;
+}
+
+- (NSArray *)objectsAtIndexes:(NSIndexSet *)indexes
+{
+    NSUInteger memo_max_index = [self count] - 1;
+    NSMutableArray *ret = [NSMutableArray array];
+
+    NSEnumerator *enm = [[indexes indices] objectEnumerator];
+    id val = nil;
+
+    while(val = [enm nextObject]) {
+        NSUInteger idx = [val unsignedIntegerValue];
+        if(idx > memo_max_index) {
+            [NSException raise:NSRangeException format:@"-objectsAtIndexes attempting to access index %u out-of-bounds of max index %u", idx, memo_max_index];
+        } else {
+            [ret addObject:[self objectAtIndex:idx]];
+        }
+    }
+
+    return ret;
 }
 
 - (void)getObjects:(id *)buffer

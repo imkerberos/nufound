@@ -15,6 +15,7 @@
 #include "NSDictionarySuite.m"
 #include "NSSetSuite.m"
 #include "NSIndexSetSuite.m"
+#include "NSArraySuite.m"
 
 int main(int argc, char** argv)
 {
@@ -31,6 +32,7 @@ int main(int argc, char** argv)
     CuSuiteAddSuite(suite, NSDictionarySuite());
     CuSuiteAddSuite(suite, NSSetSuite());
     CuSuiteAddSuite(suite, NSIndexSetSuite());
+    CuSuiteAddSuite(suite, NSArraySuite());
 
     CuSuiteRun(suite);
     CuSuiteSummary(suite, output);
