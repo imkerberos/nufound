@@ -32,6 +32,7 @@
 #include <Foundation/NSObject.h>
 #include <Foundation/NSRange.h>
 #import <Foundation/NSIndexSet.h>
+#import <Foundation/NSData.h>
 
 @class NSPredicate;
 @class NSString;
@@ -86,9 +87,9 @@
 /* Deriving New Array */
 - (NSArray*)arrayByAddingObject:(id)anObject;
 - (NSArray*)arrayByAddingObjectsFromArray:(NSArray*)anotherArray;
-- (NSArray*)sortedArrayUsingFunction:
-  (int(*)(id element1, id element2, void *userData))comparator
-  context:(void*)context;
+- (NSArray*)sortedArrayUsingFunction:(int(*)(id element1, id element2, void *userData))comparator context:(void*)context;
+- (NSData*)sortedArrayHint;
+- (NSArray *)sortedArrayUsingFunction:(NSInteger (*)(id, id, void *))comparator context:(void *)context hint:(NSData *)hint;
 - (NSArray*)sortedArrayUsingSelector:(SEL)comparator;
 - (NSArray*)subarrayWithRange:(NSRange)range;
 - (NSArray *)filteredArrayUsingPredicate:(NSPredicate *)predicate;

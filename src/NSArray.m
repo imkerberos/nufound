@@ -476,6 +476,18 @@ static Class NSConcreteArrayClass = Nil;
     return AUTORELEASE(result);
 }
 
+- (NSData*)sortedArrayHint
+    //stubbed out.
+{
+    return nil;
+}
+
+- (NSArray *)sortedArrayUsingFunction:(NSInteger (*)(id, id, void *))comparator context:(void *)context hint:(NSData *)hint
+    //routes to -sortedArrayUsignFunction:context:
+{
+    return [self sortedArrayUsingFunction:comparator context:context];
+}
+
 static int compare(id elem1, id elem2, void* comparator)
 {
     return (int)(long)[elem1 performSelector:comparator withObject:elem2];

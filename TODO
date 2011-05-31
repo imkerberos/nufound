@@ -76,8 +76,7 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Implemented.
 * NSArray
   Added -objectsAtIndexes:
-  Added -filteredArrayUsingPredicate:
-  Added -sortedArrayUsingFunction:
+  Added -filteredArrayUsingPredicate:b
   No-oped -sortedArrayHint and -sortedArrayUsingFunction:context:hint:
   Added -pathsMatchingExtensions:
   Added -writeToFile:atomically:
