@@ -42,6 +42,7 @@
 #include <Foundation/NSUtilities.h>
 #include <Foundation/NSURL.h>
 #import <Foundation/NSException.h>
+#import <Foundation/NSPredicate.h>
 
 #include <Foundation/exceptions/GeneralExceptions.h>
 
@@ -510,6 +511,19 @@ static int compare(id elem1, id elem2, void* comparator)
 }
     // Returns an array containing the receiver's elements
     // that fall within the limits specified by range.
+
+- (NSArray *)filteredArrayUsingPredicate:(NSPredicate *)predicate
+{
+    NSMutableArray *ret = [NSMutableArray array];
+    NSEnumerator *enm = [self objectEnumerator];
+    id val = nil;
+    while(val = [enm nextObject]) {
+	if([predicate evaluateWithObject:val]) {
+	    [ret addObject:val];
+	}
+    }
+    return ret;
+}
 
 /* Joining String Elements */
 

@@ -33,6 +33,7 @@
 #include <Foundation/NSRange.h>
 #import <Foundation/NSIndexSet.h>
 
+@class NSPredicate;
 @class NSString;
 @class NSEnumerator;
 @class NSDictionary;
@@ -90,6 +91,7 @@
   context:(void*)context;
 - (NSArray*)sortedArrayUsingSelector:(SEL)comparator;
 - (NSArray*)subarrayWithRange:(NSRange)range;
+- (NSArray *)filteredArrayUsingPredicate:(NSPredicate *)predicate;
 
 /* Joining String Elements */
 - (NSString*)componentsJoinedByString:(NSString*)separator;
