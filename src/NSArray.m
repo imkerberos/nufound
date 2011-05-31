@@ -662,6 +662,11 @@ static int compare(id elem1, id elem2, void* comparator)
     return success;
 }
 
+- (BOOL)writeToURL:(NSURL*)aURL atomically:(BOOL)flag
+{
+    return [self writeToFile:[aURL absoluteString] atomically:flag];
+}
+
 /* From adopted/inherited protocols */
 
 - (unsigned)hash

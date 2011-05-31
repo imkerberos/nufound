@@ -106,6 +106,7 @@
 
 /* Write plist to file */
 - (BOOL)writeToFile:(NSString*)fileName atomically:(BOOL)flag;
+- (BOOL)writeToURL:(NSURL*)aURL atomically:(BOOL)flag;
 
 /* From adopted/inherited protocols */
 - (unsigned)hash;
