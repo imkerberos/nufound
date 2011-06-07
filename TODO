@@ -79,4 +79,11 @@ I'm slowly updating all the classes available to fit their SDK 10.6 equivalents.
   Added -filteredArrayUsingPredicate:
   No-oped -sortedArrayHint and -sortedArrayUsingFunction:context:hint:
   Added -writeToURL:atomically over -writeToFile:...
-  
+  (Block and KVC dependents left out)
+* NSMutableArray
+  Added -insertObjects:atIndexes:
+  Added -removeObjectsInRange:
+  Added -replaceObjectsAtIndexes:withObjects:
+  Added -filterUsingPredicate: (piggybacks off filteredArray...)
+  Added -exchangeObjectAtIndex:withObjectAtIndex:
+  (Block dependents left out)
